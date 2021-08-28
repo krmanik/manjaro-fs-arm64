@@ -25,9 +25,7 @@ RUN packages=(\$(curl -sL "${manjaro_packages}" | sed -e 's/\\s*#.*//;/^\\s*$/d;
       systemctl enable \${service} \
     done \
     ## Install profile overlays \
-    curl -sL "${manjaro_overlays}" | \\\
-    tar -xvf - -C / --wildcards --exclude='overlay.txt' \\\
-    arm-profiles-master-overlays-${edition}/overlays/${edition}/* --strip 3
+    curl -sL "${manjaro_overlays}" | tar -xvf - -C / --wildcards --exclude='overlay.txt' arm-profiles-master-overlays-${edition}/overlays/${edition}/* --strip 3
 
 ## Install TigerVNC 10.1.1
 RUN pacman -S tar wget sed --noconfirm
