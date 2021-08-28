@@ -11,25 +11,13 @@ RUN pacman-key --populate
 RUN pacman -Syyuu --noconfirm base sudo manjaro-release
 
 ## Setup xfce4
-RUN manjaro_packages="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/raw/master/editions/Xfce?inline=false"
-RUN manjaro_services="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/raw/master/services/Xfce?inline=false"
-RUN manjaro_overlays="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/archive/master/arm-profiles-master.tar?path=overlays/Xfce"
+RUN pacman -S tar wget sed --noconfirm
+COPY ../setup/setup.sh .
+RUN bash setup.sh
 
-RUN packages=(\$(curl -sL "${manjaro_packages}" | sed -e 's/\\s*#.*//;/^\\s*$/d;s/\\s*$//')) \
-    for package in \$(pacman -Sp "\${packages[@]}" 2>&1 | grep -Po '[^\\s]*$'); do \
-    packages=(\${packages[@]/\${package}}) \
-    done \
-    pacman -S --needed --noconfirm \${packages[@]} \
-    ## Enable profile services (optional) \
-    for service in \$(curl -sL "${manjaro_services}"); do \
-      systemctl enable \${service} \
-    done \
-    ## Install profile overlays \
-    curl -sL "${manjaro_overlays}" | tar -xvf - -C / --wildcards --exclude='overlay.txt' arm-profiles-master-overlays-${edition}/overlays/${edition}/* --strip 3
+RUN rm setup.sh
 
 ## Install TigerVNC 10.1.1
-RUN pacman -S tar wget sed --noconfirm
-
 COPY ../tigervnc/tigervnc-1.10.1-1-aarch64.pkg.tar.xz /
 COPY ../tigervnc/lib.tar.xz /usr/lib/a.tar.xz
 
