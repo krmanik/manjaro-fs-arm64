@@ -1,0 +1,46 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        sudo apt-get install qemu binfmt-support qemu-user-static
+        sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes 
+        wget https://osdn.net/projects/manjaro-arm/storage/.rootfs/Manjaro-ARM-aarch64-latest.tar.gz
+
+        mkdir manjaro-fs
+        tar -xvf Manjaro-ARM-aarch64-latest.tar.gz -C manjaro-fs/
+
+        cd manjaro-fs/
+        echo "nameserver 8.8.8.8" > etc/resolv.conf
+        cp ../Dockerfile .
+        
+        sudo docker build --tag manjaro-anki:latest .
+
+        cd ..
+
+        sudo docker images
+        sudo docker run -t -d --name manjaro_anki manjaro-anki:latest 
+        sudo docker ps
+        sudo docker export manjaro_anki > manjaro-anki-latest.tar.gz
+
+        ls -la
+
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: v0.0.5-manjaro-anki
+        artifacts: manjaro-anki-latest.tar.gz
+        token: ${{ secrets.GITHUB_TOKEN }}
