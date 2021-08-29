@@ -20,7 +20,7 @@ RUN edition="xfce" \
 
 RUN packages=$(curl -sL "${manjaro_packages}" | sed -e 's/\s*#.*//;/^\s*$/d;s/\s*$//') \
     && echo $packages | tr ' ' '\n' > de.txt \
-    && cat de.txt | cut "-d " -f1 |  xargs pacman -S --needed --noconfirm \
+    && sh -c 'cat de.txt | cut "-d " -f1 |  xargs pacman -S --needed --noconfirm' \
     && rm de.txt
 
 RUN curl -sL "${manjaro_overlays}" | \
