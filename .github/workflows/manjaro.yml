@@ -29,7 +29,6 @@ jobs:
         
         cp ../tigervnc/tigervnc-1.10.1-1-aarch64.pkg.tar.xz .
         cp ../tigervnc/lib.tar.xz usr/lib/a.tar.xz
-        cp ../setup/setup.sh .
 
         cp ../tigervnc/vncserver-start usr/local/bin/vncserver-start
         cp ../tigervnc/vncserver-stop usr/local/bin/vncserver-stop
