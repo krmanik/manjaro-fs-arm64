@@ -23,6 +23,9 @@ jobs:
         mkdir manjaro-fs
         tar -xvf Manjaro-ARM-aarch64-latest.tar.gz -C manjaro-fs/
 
+        echo $'{\n    "experimental": true\n}' | sudo tee /etc/docker/daemon.json
+        sudo systemctl restart docker
+
         cd manjaro-fs/
         echo "nameserver 8.8.8.8" > etc/resolv.conf
         cp ../Dockerfile .
@@ -33,7 +36,7 @@ jobs:
         cp ../tigervnc/vncserver-start usr/local/bin/vncserver-start
         cp ../tigervnc/vncserver-stop usr/local/bin/vncserver-stop
 
-        sudo docker build --tag manjaro-rootfs:latest .
+        sudo docker build --tag manjaro-rootfs:latest . 
 
         cd ..
 
