@@ -58,6 +58,6 @@ jobs:
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
-        tag: v0.0.6-manjaro-anki
+        tag: v0.0.7-manjaro-anki
         artifacts: manjaro-latest.tar.gz
         token: ${{ secrets.GITHUB_TOKEN }}
