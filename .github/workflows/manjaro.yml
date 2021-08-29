@@ -44,8 +44,6 @@ jobs:
         python.py undocker/undocker.py -i -o manjaro < manjaro-latest.tar
 
         cd manjaro
-        rm tigervnc-1.10.1-1-aarch64.pkg.tar.xz
-        rm Dockerfile
 
         tar -czvf manjaro-latest.tar.gz .
 
