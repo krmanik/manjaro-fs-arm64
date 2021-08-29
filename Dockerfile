@@ -45,7 +45,7 @@ RUN echo "Desktop=manjaro\n" >> /etc/skel/.vnc/config \
     && echo "Localhost" >> /etc/skel/.vnc/config \
 
     && chmod +x /usr/local/bin/vncserver-start \
-    && chmod +x /usr/local/bin/vncserver-stop \
+    && chmod +x /usr/local/bin/vncserver-stop
 
 ## Add new user account
 RUN useradd -m -G wheel -s /bin/bash manjaro
