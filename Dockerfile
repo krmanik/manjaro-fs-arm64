@@ -13,6 +13,8 @@ RUN pacman-mirrors --country Germany,France,Austria \
 ## Setup xfce4
 RUN pacman -S tar wget sed --noconfirm
 
+RUN chmod o+w .
+
 RUN edition="xfce" \
     && manjaro_packages="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/raw/master/editions/${edition}?inline=false" \
     && manjaro_services="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/raw/master/services/${edition}?inline=false" \
