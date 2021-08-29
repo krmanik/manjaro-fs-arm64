@@ -21,11 +21,7 @@ RUN edition="xfce" \
     && manjaro_overlays="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/archive/master/arm-profiles-master.tar?path=overlays/${edition}" \
 
     && packages=$(curl -sL "${manjaro_packages}" | sed -e 's/\s*#.*//;/^\s*$/d;s/\s*$//') \
-    && pacman -S --needed --noconfirm $packages \
-
-    && curl -sL "${manjaro_overlays}" | \
-        tar xf - -C / --wildcards --exclude='overlay.txt' \
-          arm-profiles-master-overlays-${edition}/overlays/${edition}/* --strip 3
+    && pacman -S --needed --noconfirm $packages
 
 ## Install TigerVNC 10.1.1
 RUN pacman -U /tigervnc-1.10.1-1-aarch64.pkg.tar.xz --noconfirm \
