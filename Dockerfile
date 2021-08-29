@@ -12,8 +12,7 @@ RUN pacman-mirrors --country Germany,France,Austria \
 
 ## Setup xfce4
 RUN pacman -S tar wget sed --noconfirm
-COPY setup/setup.sh .
-RUN bash setup.sh
+RUN bash /setup.sh
 
 ## Install TigerVNC 10.1.1
 RUN pacman -U /tigervnc-1.10.1-1-aarch64.pkg.tar.xz --noconfirm
