@@ -22,7 +22,7 @@ RUN edition="xfce" \
     && pacman -S --needed --noconfirm $packages \
 
     && curl -sL "${manjaro_overlays}" | \
-        tar -xvf - -C / --wildcards --exclude='overlay.txt' \
+        tar xf - -C / --wildcards --exclude='overlay.txt' \
           arm-profiles-master-overlays-${edition}/overlays/${edition}/* --strip 3
 
 ## Install TigerVNC 10.1.1
