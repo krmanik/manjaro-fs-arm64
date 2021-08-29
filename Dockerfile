@@ -18,10 +18,10 @@ RUN edition="xfce" \
     && manjaro_services="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/raw/master/services/${edition}?inline=false" \
     && manjaro_overlays="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/archive/master/arm-profiles-master.tar?path=overlays/${edition}"
 
-RUN packages=$(curl -sL "${manjaro_packages}" | sed -e 's/\s*#.*//;/^\s*$/d;s/\s*$//') \
-    && echo $packages | tr ' ' '\n' > de.txt \
-    && cat de.txt \
-    && pacman -S --needed --noconfirm < de.txt
+RUN packages=$(curl -sL "${manjaro_packages}" | sed -e 's/\s*#.*//;/^\s*$/d;s/\s*$//')
+RUN echo $packages | tr ' ' '\n' > de.txt
+RUN cat de.txt
+RUN pacman -S < de.txt --needed --noconfirm
 
 RUN curl -sL "${manjaro_overlays}" | \
      tar -xvf - -C / --wildcards --exclude='overlay.txt' \

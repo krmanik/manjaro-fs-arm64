@@ -49,6 +49,10 @@ jobs:
 
         tar -czvf manjaro-latest.tar.gz .
 
+        cd ..
+
+        mv manjaro-fs/manjaro-latest.tar.gz .
+
         ls -la
 
     - name: Create Release
