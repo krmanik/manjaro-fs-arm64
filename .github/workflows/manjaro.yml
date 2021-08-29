@@ -36,24 +36,12 @@ jobs:
         cp ../tigervnc/vncserver-start usr/local/bin/vncserver-start
         cp ../tigervnc/vncserver-stop usr/local/bin/vncserver-stop
 
-        sudo docker build --tag manjaro-rootfs:latest . 
+        sudo docker build --tag manjaro-anki:latest . --squash
 
         cd ..
-
         sudo docker images
-        sudo docker save manjaro-rootfs > manjaro-latest.tar
-
-        mkdir manjaro
-        python undocker/undocker.py -i -o manjaro < manjaro-latest.tar
-
-        cd manjaro
-
-        tar -czvf manjaro-latest.tar.gz .
-
-        cd ..
-
-        mv manjaro-fs/manjaro-latest.tar.gz .
-
+        sudo docker save manjaro-anki:latest > manjaro-anki-latest.tar
+        tar -czvf manjaro-anki-latest.tar.gz manjaro-anki-latest.tar
         ls -la
 
     - name: Create Release
