@@ -12,7 +12,7 @@ RUN pacman -Syyuu --noconfirm base sudo manjaro-release
 
 ## Setup xfce4
 RUN pacman -S tar wget sed --noconfirm
-COPY ../setup/setup.sh .
+COPY setup/setup.sh .
 RUN bash setup.sh
 
 ## Install TigerVNC 10.1.1
