@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
-        sudo apt-get install qemu binfmt-support qemu-user-static
+        sudo apt-get install -q -y qemu binfmt-support qemu-user-static python3 python-is-python3
         sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes 
         wget https://osdn.net/projects/manjaro-arm/storage/.rootfs/Manjaro-ARM-aarch64-latest.tar.gz
 
@@ -41,7 +41,7 @@ jobs:
         sudo docker save manjaro-rootfs > manjaro-latest.tar
 
         mkdir manjaro
-        python.py undocker/undocker.py -i -o manjaro < manjaro-latest.tar
+        python undocker/undocker.py -i -o manjaro < manjaro-latest.tar
 
         cd manjaro
 
