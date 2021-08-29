@@ -27,20 +27,34 @@ jobs:
         echo "nameserver 8.8.8.8" > etc/resolv.conf
         cp ../Dockerfile .
         
-        sudo docker build --tag manjaro-anki:latest .
+        cp ../tigervnc/vncserver-start usr/local/bin/vncserver-start
+        cp ../tigervnc/vncserver-stop usr/local/bin/vncserver-stop
+
+        cp ../tigervnc/tigervnc-1.10.1-1-aarch64.pkg.tar.xz .
+        cp ../tigervnc/lib.tar.xz usr/lib/a.tar.xz
+        
+        sudo docker build --tag manjaro-rootfs:latest .
 
         cd ..
 
         sudo docker images
-        sudo docker run -t -d --name manjaro_anki manjaro-anki:latest 
-        sudo docker ps
-        sudo docker export manjaro_anki > manjaro-anki-latest.tar.gz
+        sudo docker save manjaro-rootfs > manjaro-latest.tar
+
+        mkdir manjaro
+        python.py undocker/undocker.py -i -o manjaro < manjaro-latest.tar
+
+        cd manjaro
+        rm tigervnc-1.10.1-1-aarch64.pkg.tar.xz
+        rm Dockerfile
+        rm setup.sh
+
+        tar -czvf manjaro-latest.tar.gz .
 
         ls -la
 
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
-        tag: v0.0.5-manjaro-anki
-        artifacts: manjaro-anki-latest.tar.gz
+        tag: v0.0.6-manjaro-anki
+        artifacts: manjaro-latest.tar.gz
         token: ${{ secrets.GITHUB_TOKEN }}
