@@ -48,12 +48,13 @@ RUN echo "Desktop=manjaro\n" >> /etc/skel/.vnc/config \
     && chmod +x /usr/local/bin/vncserver-stop
 
 ## Add new user account
-RUN useradd -m -G wheel -s /bin/bash manjaro
-RUN echo "manjaro:manjaro" | chpasswd
-RUN sed -i -e "/root ALL=(ALL) ALL/a manjaro ALL=(ALL) ALL" -e "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
-RUN echo "exec su - manjaro" > /root/.bash_profile
+RUN useradd -m -G wheel -s /bin/bash manjaro \
+    && echo "manjaro:manjaro" | chpasswd \
+    && sed -i -e "/root ALL=(ALL) ALL/a manjaro ALL=(ALL) ALL" -e "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers \
+    && echo "exec su - manjaro" > /root/.bash_profile
 
-RUN mkdir $HOME/.vnc
-RUN echo password | vncpasswd -f > $HOME/.vnc/passwd
-RUN chown -R manjaro:manjaro  $HOME/.vnc
-RUN chmod 400 $HOME/.vnc/passwd
+## vnc password
+RUN mkdir $HOME/.vnc \
+    && echo password | vncpasswd -f > $HOME/.vnc/passwd \
+    && chown -R manjaro:manjaro  $HOME/.vnc \
+    && chmod 400 $HOME/.vnc/passwd

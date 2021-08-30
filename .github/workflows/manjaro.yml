@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Create Manjaro fs with xfce4
 
 on:
   push:
@@ -18,6 +18,7 @@ jobs:
       run: |
         sudo apt-get install -q -y qemu binfmt-support qemu-user-static python3 python-is-python3
         sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes 
+
         wget https://osdn.net/projects/manjaro-arm/storage/.rootfs/Manjaro-ARM-aarch64-latest.tar.gz
 
         mkdir manjaro-fs
@@ -36,17 +37,23 @@ jobs:
         cp ../tigervnc/vncserver-start usr/local/bin/vncserver-start
         cp ../tigervnc/vncserver-stop usr/local/bin/vncserver-stop
 
-        sudo docker build --tag manjaro-anki:latest . --squash
+        sudo docker build --tag manjaro-rootfs:latest . --squash
 
         cd ..
         sudo docker images
-        sudo docker save manjaro-anki:latest > manjaro-anki-latest.tar
-        tar -czvf manjaro-anki-latest.tar.gz manjaro-anki-latest.tar
+        sudo docker save manjaro-rootfs:latest > manjaro-rootfs-latest.tar
+        
+        mkdir manjaro
+        python undocker/undocker.py -i -o manjaro < manjaro-rootfs-latest.tar
+        
+        cd manjaro
+        tar -czvf ../manjaro-rootfs-latest.tar.gz .
+
         ls -la
 
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
-        tag: v0.0.7-manjaro-anki
+        tag: v0.0.1-manjaro-rootfs
         artifacts: manjaro-latest.tar.gz
         token: ${{ secrets.GITHUB_TOKEN }}
