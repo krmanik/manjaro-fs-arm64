@@ -30,18 +30,18 @@ RUN pacman -U /tigervnc-1.10.1-1-aarch64.pkg.tar.xz --noconfirm \
 
 ## Setup TigerVNC
 RUN mkdir -p /etc/skel/.vnc \
-    && echo "#!/bin/sh\n" >> /etc/skel/.vnc/xstartup \
-    && echo "unset SESSION_MANAGER\n" >> /etc/skel/.vnc/xstartup \
+    && echo "#!/bin/sh" >> /etc/skel/.vnc/xstartup \
+    && echo "unset SESSION_MANAGER" >> /etc/skel/.vnc/xstartup \
     && echo "export DISPLAY=:1" >> /etc/skel/.vnc/xstartup \
     && echo "export PULSE_SERVER=127.0.0.1" >> /etc/skel/.vnc/xstartup \
-    && echo "pulseaudio --start\n" >> /etc/skel/.vnc/xstartup \
+    && echo "pulseaudio --start" >> /etc/skel/.vnc/xstartup \
     && echo "[[ -r \${HOME}/.Xresources ]] && xrdb \${HOME}/.Xresources" >> /etc/skel/.vnc/xstartup \
     && echo "exec dbus-launch startxfce4" >> /etc/skel/.vnc/xstartup \
     && chmod -cf +x /etc/skel/.vnc/xstartup
 
-RUN echo "Desktop=manjaro\n" >> /etc/skel/.vnc/config \
-    && echo "Geometry=1024x768\n" >> /etc/skel/.vnc/config \
-    && echo "SecurityTypes=VncAuth,TLSVnc\n" >> /etc/skel/.vnc/config \
+RUN echo "Desktop=manjaro" >> /etc/skel/.vnc/config \
+    && echo "Geometry=1024x768" >> /etc/skel/.vnc/config \
+    && echo "SecurityTypes=VncAuth,TLSVnc" >> /etc/skel/.vnc/config \
     && echo "Localhost" >> /etc/skel/.vnc/config \
 
     && chmod +x /usr/local/bin/vncserver-start \
