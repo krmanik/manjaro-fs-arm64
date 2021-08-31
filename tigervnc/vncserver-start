@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export USER=manjaro
-export HOME=/manjaro
+export USER=$USER
+export HOME=$HOME
 
 vncserver -localhost -name localhost :1

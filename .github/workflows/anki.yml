@@ -1,0 +1,66 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        sudo apt-get install -q -y qemu binfmt-support qemu-user-static python3 python-is-python3
+        sudo docker run --rm --privileged multiarch/qemu-user-static --reset -p yes 
+        wget https://osdn.net/projects/manjaro-arm/storage/.rootfs/Manjaro-ARM-aarch64-latest.tar.gz
+
+        echo $'{\n    "experimental": true\n}' | sudo tee /etc/docker/daemon.json
+        sudo systemctl restart docker
+
+        mkdir manjaro-fs
+        tar -xvf Manjaro-ARM-aarch64-latest.tar.gz -C manjaro-fs/
+
+        cd manjaro-fs/
+
+        echo "nameserver 8.8.8.8" > etc/resolv.conf
+        
+        cp ../anki/Dockerfile .
+
+        cp ../wallpaper/wallpaper.png usr/share/wallpaper.png        
+        
+        cp ../tigervnc/tigervnc-1.10.1-1-aarch64.pkg.tar.xz .
+        cp ../tigervnc/lib.tar.xz usr/lib/a.tar.xz
+
+        cp ../tigervnc/vncserver-start usr/local/bin/vncserver-start
+        cp ../tigervnc/vncserver-stop usr/local/bin/vncserver-stop
+        
+        cp ../anki/anki.desktop .
+        cp ../anki/anki.png .
+
+        sudo docker build --tag manjaro-anki:latest . --squash
+
+        cd ..
+        sudo docker images
+        sudo docker save manjaro-anki:latest > manjaro-anki-latest.tar
+        
+        mkdir manjaro
+        python undocker/undocker.py -i -o manjaro < manjaro-anki-latest.tar
+        
+        cd manjaro
+        rm Dockerfile
+        tar -czvf ../manjaro-anki-latest.tar.gz .
+
+        ls -la
+
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: v0.1.0-manjaro-anki
+        artifacts: manjaro-anki-latest.tar.gz
+        token: ${{ secrets.GITHUB_TOKEN }}
