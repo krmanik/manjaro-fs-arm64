@@ -62,6 +62,6 @@ jobs:
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
-        tag: v0.0.3-manjaro-rootfs
+        tag: v0.0.4-manjaro-rootfs
         artifacts: manjaro-rootfs-latest.tar.gz
         token: ${{ secrets.GITHUB_TOKEN }}
