@@ -2,7 +2,8 @@ name: Docker Image CI
 
 on:
   push:
-      - '.github/workflows/anki.yml'
+    paths:
+      - '.github/workflows/manjaro.yml'
       - 'anki/Dockerfile'
     branches: [ main ]
   pull_request:
