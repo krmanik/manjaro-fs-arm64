@@ -50,6 +50,16 @@ vncserver-start
 vncserver-stop
 ```
 
+
+# Faq ?
+1. Manjaro theme is not applied?
+
+Run following commands to reset to default Manjaro look.
+```
+cp -r /etc/skel/.config/xfce4/panel $HOME/.config/xfce4/panel
+cp /etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
+```
+
 # License and Credits
 - [AndronixOrigin](https://github.com/AndronixApp/AndronixOrigin)<br>
     MIT License
