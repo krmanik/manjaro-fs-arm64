@@ -52,17 +52,5 @@ RUN pacman -Sy --noconfirm --needed python-pyqt5 python-pyqtwebengine python-pip
 RUN pip install https://github.com/infinyte7/anki-arm64/releases/download/v0.0.1-archarm/anki-2.1.47-cp38-abi3-manylinux2014_aarch64.whl
 RUN pip install https://github.com/infinyte7/anki-arm64/releases/download/v0.0.1-archarm/aqt-2.1.47-py3-none-any.whl
 
-## Add new user account
-RUN useradd -m -G wheel -s /bin/bash manjaro \
-&& echo "manjaro:manjaro" | chpasswd \
-&& sed -i -e "/root ALL=(ALL) ALL/a manjaro ALL=(ALL) ALL" -e "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers \
-&& echo "exec su - manjaro" > /root/.bash_profile
-
-## vnc password
-RUN mkdir $HOME/.vnc \
-&& echo password | vncpasswd -f > $HOME/.vnc/passwd \
-&& chown -R manjaro:manjaro  $HOME/.vnc \
-&& chmod 400 $HOME/.vnc/passwd
-
 RUN mv anki.desktop /usr/share/applications/anki.desktop \
 && mv anki.png /usr/share/pixmaps/anki.png

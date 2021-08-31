@@ -2,6 +2,8 @@ name: Docker Image CI
 
 on:
   push:
+      - '.github/workflows/anki.yml'
+      - 'anki/Dockerfile'
     branches: [ main ]
   pull_request:
     branches: [ main ]
