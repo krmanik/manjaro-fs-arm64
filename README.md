@@ -2,6 +2,11 @@
 
 Manjaro rootfs with `xfce4` and `vncserver` preinstalled. Just setup username, password and vnc password.
 
+### There are two releases
+1. Manjaro arm64 with xfce4, xfce4-goodies and tigervnc
+2. Anki with Manjaro (xfce4 only, latest Anki and tigervnc)
+<br>   Note: This is very minimal edition
+
 # QuickStart
 
 ## Manjaro arm64 with xfce4, xfce4-goodies and tigervnc
@@ -9,12 +14,22 @@ Manjaro rootfs with `xfce4` and `vncserver` preinstalled. Just setup username, p
 pkg install wget && wget https://raw.githubusercontent.com/infinyte7/manjaro-fs-arm64/main/manjaro.sh && chmod +x manjaro.sh && ./manjaro.sh
 ```
 
-## Install Anki with Manjaro (xfce4 only, latest Anki and tigervnc)
+## Anki with Manjaro (xfce4 only, latest Anki and tigervnc)
 ```
-pkg install wget && wget https://raw.githubusercontent.com/infinyte7/manjaro-fs-arm64/main/install_anki.sh && chmod +x install_anki.sh && ./install_anki.sh
+pkg install wget && wget https://raw.githubusercontent.com/infinyte7/manjaro-fs-arm64/main/manki.sh && chmod +x manki.sh && ./manki.sh
 ```
 
-# How to setup manually it in termux?
+## To proot already installed rootfs
+### For Manjaro
+```
+./manjaro.sh
+```
+### For Anki
+```
+./manki.sh
+```
+
+# How to setup it manually in Termux?
 1. Download the manjaro rootfs from release page
 ```
 wget <tar.gz url from relese>
@@ -48,6 +63,16 @@ vncserver-start
 4. Stop vncserver
 ```
 vncserver-stop
+```
+
+# Faq ?
+1. Manjaro theme is not applied?
+
+    Run following commands to reset to default Manjaro look.
+
+```
+cp -r /etc/skel/.config/xfce4/panel $HOME/.config/xfce4/panel
+cp /etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
 ```
 
 # License and Credits
