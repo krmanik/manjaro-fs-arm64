@@ -32,7 +32,7 @@ fi
 
 chroot() {
   while true; do
-    directory="${1:-$(dialog --stdout --help-button --title "Manjaroid chroot" --dselect "$(pwd)/manjaro" -1 -1)}"
+    directory="${1:-$(dialog --stdout --help-button --title "Manjaroid chroot" --dselect "$(pwd)/manjaro-anki" -1 -1)}"
     status=$?
     if [[ ${status} = ${DIALOG_CANCEL} || ${status} = ${DIALOG_ESC} ]]; then
       main_menu
@@ -143,7 +143,7 @@ bash /root/.bash_profile
 
 install() {
   while true; do
-    directory="$(dialog --stdout --help-button --title "Manjaroid install" --dselect "$(pwd)/manjaro" -1 -1)"
+    directory="$(dialog --stdout --help-button --title "Manjaroid install" --dselect "$(pwd)/manjaro-anki" -1 -1)"
     status=$?
     if [[ ${status} = ${DIALOG_CANCEL} || ${status} = ${DIALOG_ESC} ]]; then
       main_menu
@@ -177,7 +177,7 @@ install() {
 
 remove() {
   while true; do
-    directory="$(dialog --stdout --help-button --title "Manjaroid remove" --dselect "$(pwd)/manjaro" -1 -1)"
+    directory="$(dialog --stdout --help-button --title "Manjaroid remove" --dselect "$(pwd)/manjaro-anki" -1 -1)"
     status=$?
     if [[ ${status} = ${DIALOG_CANCEL} || ${status} = ${DIALOG_ESC} ]]; then
       main_menu
