@@ -13,8 +13,6 @@ RUN pacman-mirrors --country Germany,France,Austria \
 ## Setup xfce4
 RUN pacman -S tar wget sed --noconfirm
 
-RUN chmod o+w .
-
 RUN edition="xfce" \
     && manjaro_packages="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/raw/master/editions/${edition}?inline=false" \
     && manjaro_services="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/raw/master/services/${edition}?inline=false" \
@@ -36,7 +34,7 @@ RUN mkdir -p /etc/skel/.vnc \
     && echo "export PULSE_SERVER=127.0.0.1" >> /etc/skel/.vnc/xstartup \
     && echo "pulseaudio --start" >> /etc/skel/.vnc/xstartup \
     && echo "[[ -r \${HOME}/.Xresources ]] && xrdb \${HOME}/.Xresources" >> /etc/skel/.vnc/xstartup \
-    && echo "exec dbus-launch startxfce4" >> /etc/skel/.vnc/xstartup \
+    && echo "startxfce4 &" >> /etc/skel/.vnc/xstartup \
     && chmod -cf +x /etc/skel/.vnc/xstartup
 
 RUN echo "Desktop=manjaro" >> /etc/skel/.vnc/config \
@@ -46,15 +44,3 @@ RUN echo "Desktop=manjaro" >> /etc/skel/.vnc/config \
 
     && chmod +x /usr/local/bin/vncserver-start \
     && chmod +x /usr/local/bin/vncserver-stop
-
-## Add new user account
-RUN useradd -m -G wheel -s /bin/bash manjaro \
-    && echo "manjaro:manjaro" | chpasswd \
-    && sed -i -e "/root ALL=(ALL) ALL/a manjaro ALL=(ALL) ALL" -e "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers \
-    && echo "exec su - manjaro" > /root/.bash_profile
-
-## vnc password
-RUN mkdir $HOME/.vnc \
-    && echo password | vncpasswd -f > $HOME/.vnc/passwd \
-    && chown -R manjaro:manjaro  $HOME/.vnc \
-    && chmod 400 $HOME/.vnc/passwd
