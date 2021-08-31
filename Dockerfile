@@ -34,7 +34,7 @@ RUN mkdir -p /etc/skel/.vnc \
     && echo "export PULSE_SERVER=127.0.0.1" >> /etc/skel/.vnc/xstartup \
     && echo "pulseaudio --start" >> /etc/skel/.vnc/xstartup \
     && echo "[[ -r \${HOME}/.Xresources ]] && xrdb \${HOME}/.Xresources" >> /etc/skel/.vnc/xstartup \
-    && echo "startxfce4 &" >> /etc/skel/.vnc/xstartup \
+    && echo "exec dbus-launch startxfce4" >> /etc/skel/.vnc/xstartup \
     && chmod -cf +x /etc/skel/.vnc/xstartup
 
 RUN echo "Desktop=manjaro" >> /etc/skel/.vnc/config \
