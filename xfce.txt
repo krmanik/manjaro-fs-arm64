@@ -1,0 +1,156 @@
+## Maintained by Darksky ##
+
+# Minimal packages
+sudo
+parted
+openssh
+haveged
+inxi
+ncdu
+nano
+dhcpcd
+man-pages
+man-db
+zswap-arm
+
+# Sound, video and bluetooth
+pavucontrol
+pulseaudio-alsa
+alsa-utils
+smplayer
+bluez
+pulseaudio-bluetooth
+blueman
+
+# Display Manager
+lightdm
+lightdm-gtk-greeter
+lightdm-gtk-greeter-settings
+
+## Network
+avahi
+networkmanager
+network-manager-applet
+dhclient
+manjaro-hotfixes
+manjaro-settings-samba
+
+## XFCE Group
+exo
+garcon
+#gtk-xfce-engine
+thunar
+thunar-volman
+tumbler
+xfce4-appfinder
+xfce4-panel
+xfce4-power-manager
+xfce4-session
+xfce4-settings
+xfce4-terminal
+xfconf
+xfdesktop
+xfwm4
+# xfwm4-themes
+
+## XFCE Extras
+thunar-archive-plugin
+thunar-media-tags-plugin
+
+# xfce4-artwork
+xfce4-battery-plugin
+xfce4-clipman-plugin
+xfce4-datetime-plugin
+xfce4-diskperf-plugin
+xfce4-fsguard-plugin
+xfce4-genmon-plugin
+xfce4-mailwatch-plugin
+xfce4-mount-plugin
+xfce4-mpc-plugin
+xfce4-notes-plugin
+xfce4-notifyd
+xfce4-screenshooter
+# xfce4-smartbookmark-plugin
+xfce4-systemload-plugin
+xfce4-taskmanager
+xfce4-time-out-plugin
+xfce4-timer-plugin
+xfce4-verve-plugin
+xfce4-wavelan-plugin
+xfce4-weather-plugin
+xfce4-whiskermenu-plugin
+xfce4-xkb-plugin
+xfce4-pulseaudio-plugin
+
+## Themes
+qt5ct
+kvantum-qt5
+kvantum-theme-matchama
+matcha-gtk-theme
+manjaro-arm-wallpapers
+papirus-maia-icon-theme
+xcursor-breeze 
+
+# Browser
+firefox
+firefox-ublock-origin
+
+# Office suite
+libreoffice-fresh
+
+# Package Manager
+pamac-gtk
+
+# Fonts
+ttf-bitstream-vera
+noto-fonts
+wqy-microhei #chinese
+
+## Applications
+engrampa
+galculator-gtk2
+audacious
+htop
+qpdf
+manjaro-settings-manager
+mlocate
+mousepad
+viewnior
+wget
+tlp
+cpu-temp-speed
+matray
+
+# File systems access
+gvfs
+gvfs-gphoto2
+gvfs-mtp
+gvfs-nfs
+gvfs-smb
+ifuse
+mtpfs
+ntfs-3g
+mpv
+ffmpeg
+usb_modeswitch
+
+# Optional dependencies engrampa
+p7zip  # 7Z and ARJ archive support
+unrar  # RAR archive support
+
+## Xorg Input Drivers
+xf86-input-elographics
+#xf86-input-evdev
+xf86-input-libinput
+xf86-input-void
+
+## Xorg Server and Graphics
+xdg-user-dirs
+xorg-server
+numlockx
+xorg-twm
+xorg-xinit
+xorg-xkill
+
+## Desktop Utils
+xdg-utils
