@@ -9,7 +9,9 @@ packages=($(curl -sL "${manjaro_packages}" | sed -e 's/\s*#.*//;/^\s*$/d;s/\s*$/
 for package in $(pacman -Sp "${packages[@]}" 2>&1 | grep -Po '[^\s]*$'); do
   packages=(${packages[@]/${package}})
 done
-pacman -S --needed --noconfirm ${packages[@]}
+
+## Already installed, uncomment and run to update xfce4
+# pacman -S --needed --noconfirm ${packages[@]}
 
 ## Enable profile services (optional)
 for service in $(curl -sL "${manjaro_services}"); do
