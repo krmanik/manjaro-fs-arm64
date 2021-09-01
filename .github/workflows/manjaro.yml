@@ -54,6 +54,7 @@ jobs:
         python undocker/undocker.py -i -o manjaro < manjaro-rootfs-latest.tar
         
         cd manjaro
+        rm Dockerfile
         tar -czvf ../manjaro-rootfs-latest.tar.gz .
         
         cd ..
@@ -62,6 +63,6 @@ jobs:
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
-        tag: v0.0.5-manjaro-rootfs
+        tag: v0.0.6-manjaro-rootfs
         artifacts: manjaro-rootfs-latest.tar.gz
         token: ${{ secrets.GITHUB_TOKEN }}

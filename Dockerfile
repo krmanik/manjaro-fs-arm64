@@ -26,6 +26,8 @@ RUN pacman -U /tigervnc-1.10.1-1-aarch64.pkg.tar.xz --noconfirm \
     && tar xf /usr/lib/a.tar.xz -C /usr/lib \
     && sed -i '27i IgnorePkg = tigervnc' /etc/pacman.conf
 
+RUN paccache -rk0
+
 ## Setup TigerVNC
 RUN mkdir -p /etc/skel/.vnc \
     && echo "#!/bin/sh" >> /etc/skel/.vnc/xstartup \
