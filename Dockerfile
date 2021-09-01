@@ -46,3 +46,10 @@ RUN echo "Desktop=manjaro" >> /etc/skel/.vnc/config \
 
     && chmod +x /usr/local/bin/vncserver-start \
     && chmod +x /usr/local/bin/vncserver-stop
+
+## update arm profile overlays
+RUN edition="xfce" \
+&& manjaro_overlays="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/archive/master/arm-profiles-master.tar?path=overlays/${edition}" \
+&& curl -sL "${manjaro_overlays}" | \
+    tar -xvf - -C / --wildcards --exclude='overlay.txt' \
+      arm-profiles-master-overlays-${edition}/overlays/${edition}/* --strip 3
