@@ -136,6 +136,10 @@ echo "${username}:${password}" | chpasswd
 sed -i -e "/root ALL=(ALL) ALL/a ${username} ALL=(ALL) ALL" \\
   -e "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
 chown ${username}:${password} /usr/bin/sudo && chmod 4755 /usr/bin/sudo
+
+## ARM profiles
+cp -r /etc/skel/.config $HOME
+
 echo "exec su - ${username}" >/root/.bash_profile
 bash /root/.bash_profile
 .
@@ -160,7 +164,7 @@ install() {
       continue
     fi
     mkdir -p "${directory}" 2>&1 >/dev/null
-    manjaro_rootfs="https://github.com/infinyte7/manjaro-fs-arm64/releases/download/v0.0.5-manjaro-rootfs/manjaro-rootfs-latest.tar.gz"
+    manjaro_rootfs="https://github.com/infinyte7/manjaro-fs-arm64/releases/download/v0.0.6-manjaro-rootfs/manjaro-rootfs-latest.tar.gz"
     size=$(curl -sLI "${manjaro_rootfs}" | awk '/content-length/ {printf "%i", ($2/1024)/1024}')
     (curl -sL "${manjaro_rootfs}" | pv -ns "${size}m" - | proot -l tar -xzf - -C "${directory}") 2>&1 | \
       dialog --title "Manjaroid install" --gauge "Installing Manjaro (${size}MB)..." -1 -1
