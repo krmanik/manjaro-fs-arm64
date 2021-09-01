@@ -16,8 +16,29 @@ RUN chmod -cf 775 /var/games 2>/dev/null \
 
 RUN pacman -Syyuu --noconfirm base sudo manjaro-release
 
-## Install DE and vnc
-RUN pacman -Sy --noconfirm --needed xfce4
+## Install DE and additional packages
+RUN pacman -Sy --noconfirm --needed xfce4 \
+
+## Minimal packages
+nano zswap-arm openssh wget \
+
+## File systems access
+mpv \
+
+## Sound, video and bluetooth
+pavucontrol pulseaudio-alsa \
+
+## Package Manager
+pamac-gtk \
+
+## Fonts
+ttf-bitstream-vera noto-fonts wqy-microhei \
+
+## Applications
+manjaro-settings-manager \
+
+## Themes
+qt5ct kvantum-qt5 kvantum-theme-matchama matcha-gtk-theme manjaro-arm-wallpapers papirus-maia-icon-theme xcursor-breeze
 
 ## Install TigerVNC 1.10.1
 RUN pacman -S tar wget sed --noconfirm \
@@ -54,3 +75,5 @@ RUN pip install https://github.com/infinyte7/anki-arm64/releases/download/v0.0.1
 
 RUN mv anki.desktop /usr/share/applications/anki.desktop \
 && mv anki.png /usr/share/pixmaps/anki.png
+
+RUN paccache -rk0
