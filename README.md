@@ -1,20 +1,39 @@
-# manjaro-fs
+# Manjaro arm64 rootfs with xfce4 
 
-Manjaro rootfs with `xfce4` and `vncserver` preinstalled. Just setup username, password and vnc password.
+> Manjaro rootfs with `xfce4` and `vncserver` preinstalled. Just setup username, password and vnc password.
 
-### There are two releases
-1. Manjaro arm64 with xfce4, xfce4-goodies and tigervnc
-2. Anki with Manjaro (xfce4 only, latest Anki and tigervnc)
-<br>   Note: This is very minimal edition
+## There are two releases
+### 1. Manjaro
+Manjaro arm64 with xfce4, xfce4-goodies and tigervnc
+
+### 2. Anki
+Anki with Manjaro (xfce4 only, latest Anki and tigervnc)
+
+|  | Manjaro 21.1.1  | Anki 2.1.47  |
+| :---:   | :-: | :-: |
+| vncserver | tigervnc | tigervnc |
+| Download size | 1.67 GB | 0.8 GB|
+| Installed Size | 5.0 GB | 1.8 GB |
+| Desktop Env. | xfce4, xfce4-goodies | xfce4 (minimal) |
 
 # QuickStart
+1. Copy and run commands below in [Termux](https://f-droid.org/en/packages/com.termux)
+2. Select `Install the latest rootfs`
+3. Wait for download to complete
+4. Set username and password
+5. Type `vncserver-start` and vnc password
+6. Open [RealVNC](https://play.google.com/store/apps/details?id=com.realvnc.viewer.android) and connect to `localhost:5901`.
+
+    View detials tutorial [here](https://github.com/infinyte7/manjaro-fs-arm64/wiki).
 
 ## Manjaro arm64 with xfce4, xfce4-goodies and tigervnc
+Copy and run it in Termux
 ```
 pkg install wget && wget https://raw.githubusercontent.com/infinyte7/manjaro-fs-arm64/main/manjaro.sh && chmod +x manjaro.sh && ./manjaro.sh
 ```
 
 ## Anki with Manjaro (xfce4 only, latest Anki and tigervnc)
+Copy and run it in Termux
 ```
 pkg install wget && wget https://raw.githubusercontent.com/infinyte7/manjaro-fs-arm64/main/manki.sh && chmod +x manki.sh && ./manki.sh
 ```
@@ -29,53 +48,8 @@ pkg install wget && wget https://raw.githubusercontent.com/infinyte7/manjaro-fs-
 ./manki.sh
 ```
 
-# How to setup it manually in Termux?
-1. Download the manjaro rootfs from release page
-    ```
-    wget <tar.gz url from relese>
-    ```
-
-2. Extract the `manjaro-rootfs-latest.tar.gz` into `manjaro` folder. Note: folder name must be `manjaro`
-    ```
-    mkdir manjaro
-    proot -l tar -xzf manjaro-rootfs-latest.tar.gz -C manjaro
-    ```
-
-3. Use `manjaro.sh` to proot into manjaro rootfs
-    ```
-    wget 
-    chmod +x manjaro.sh
-    ./manjaro.sh
-    ```
-
-## In Manjaro proot
-1. Setup username and password
-
-2. Setup vnc password
-    ```
-    vncpasswd
-    ```
-
-3. Run vncserver
-    ```
-    vncserver-start
-    ```
-
-4. Stop vncserver
-    ```
-    vncserver-stop
-    ```
-
-# Faq ?
-1. Manjaro theme is not applied?
-
-    Run following commands to reset to default Manjaro look.
-
-    ```
-    cp -r /etc/skel/.config/xfce4/panel $HOME/.config/xfce4/panel
-    
-    cp /etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml $HOME/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml
-    ```
+### View Demo
+https://user-images.githubusercontent.com/12841290/131592776-e720770b-e7e6-44cd-862a-c28378b0d494.mp4
 
 # License and Credits
 - [Manjaro ARM](https://manjaro.org/)
