@@ -17,7 +17,7 @@ RUN chmod -cf 775 /var/games 2>/dev/null \
 RUN pacman -Syyuu --noconfirm base sudo manjaro-release
 
 ## Install DE and additional packages
-RUN pacman -Sy --noconfirm --needed xfce4 \
+RUN pacman -Sy --noconfirm --needed xfce4 xfce4-goodies \
 
 ## Minimal packages
 nano zswap-arm openssh wget \
@@ -75,5 +75,12 @@ RUN pip install https://github.com/infinyte7/anki-arm64/releases/download/v0.0.1
 
 RUN mv anki.desktop /usr/share/applications/anki.desktop \
 && mv anki.png /usr/share/pixmaps/anki.png
+
+## update arm profile overlays
+RUN edition="xfce" \
+&& manjaro_overlays="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/archive/master/arm-profiles-master.tar?path=overlays/${edition}" \
+&& curl -sL "${manjaro_overlays}" | \
+    tar -xvf - -C / --wildcards --exclude='overlay.txt' \
+      arm-profiles-master-overlays-${edition}/overlays/${edition}/* --strip 3
 
 RUN paccache -rk0
