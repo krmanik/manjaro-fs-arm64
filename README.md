@@ -14,8 +14,9 @@ Anki with Manjaro (xfce4 only, latest Anki and tigervnc)
 |  | Manjaro 21.1.1  | Anki 2.1.47  |
 | :---:   | :-: | :-: |
 | vncserver | tigervnc | tigervnc |
-| Download size | 1.0 GB | 0.7 GB|
-| Installed Size | 5.0 GB | 1.8 GB |
+| Anki | No | Yes |
+| Download size | 1.0 GB | 0.7 GB |
+| Installed Size | 4.0 GB | 1.8 GB |
 | Desktop Env. | xfce4, xfce4-goodies | xfce4 (minimal) |
 
 # QuickStart
@@ -26,7 +27,7 @@ Anki with Manjaro (xfce4 only, latest Anki and tigervnc)
 5. Type `vncserver-start` and vnc password
 6. Open [RealVNC](https://play.google.com/store/apps/details?id=com.realvnc.viewer.android) and connect to `localhost:5901`.
 
-    View detials tutorial [here](https://github.com/infinyte7/manjaro-fs-arm64/wiki).
+    View more tutorials [here](https://github.com/infinyte7/manjaro-fs-arm64/wiki).
 
 ## Manjaro arm64 with xfce4, xfce4-goodies and tigervnc
 Copy and run it in Termux
