@@ -1,10 +1,12 @@
 # Manjaro arm64 rootfs with xfce4 
 
+![](images/screen1.jpg)
+
 > Manjaro rootfs with `xfce4` and `vncserver` preinstalled. Just setup username, password and vnc password.
 
 ## There are two releases
 ### 1. Manjaro
-Manjaro arm64 with xfce4, xfce4-goodies and tigervnc
+Manjaro arm64 with xfce4, xfce4-goodies, tigervnc and (no Anki)
 
 ### 2. Anki
 Anki with Manjaro (xfce4 only, latest Anki and tigervnc)
@@ -12,7 +14,7 @@ Anki with Manjaro (xfce4 only, latest Anki and tigervnc)
 |  | Manjaro 21.1.1  | Anki 2.1.47  |
 | :---:   | :-: | :-: |
 | vncserver | tigervnc | tigervnc |
-| Download size | 1.67 GB | 0.8 GB|
+| Download size | 1.0 GB | 0.7 GB|
 | Installed Size | 5.0 GB | 1.8 GB |
 | Desktop Env. | xfce4, xfce4-goodies | xfce4 (minimal) |
 
@@ -47,6 +49,9 @@ pkg install wget && wget https://raw.githubusercontent.com/infinyte7/manjaro-fs-
 ```
 ./manki.sh
 ```
+
+## View wiki for more tutorials
+[View wiki](https://github.com/infinyte7/manjaro-fs-arm64/wiki)
 
 ### View Demo
 https://user-images.githubusercontent.com/12841290/131592776-e720770b-e7e6-44cd-862a-c28378b0d494.mp4
