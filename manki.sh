@@ -137,9 +137,6 @@ sed -i -e "/root ALL=(ALL) ALL/a ${username} ALL=(ALL) ALL" \\
   -e "s/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/" /etc/sudoers
 chown ${username}:${password} /usr/bin/sudo && chmod 4755 /usr/bin/sudo
 
-## ARM profiles
-cp -r /etc/skel/.config $HOME
-
 echo "exec su - ${username}" >/root/.bash_profile
 bash /root/.bash_profile
 .

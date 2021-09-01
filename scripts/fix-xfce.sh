@@ -20,3 +20,6 @@ done
 curl -sL "${manjaro_overlays}" | \
   tar -xvf - -C / --wildcards --exclude='overlay.txt' \
   arm-profiles-master-overlays-${edition}/overlays/${edition}/* --strip 3
+
+## Copy ARM profiles
+cp -r /etc/skel/.config $HOME
