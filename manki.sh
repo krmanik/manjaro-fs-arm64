@@ -98,6 +98,7 @@ chmod -cf 555 /srv/ftp /sys
 chmod -cf 1777 /tmp /var/spool/mail /var/tmp
 chmod -cf 2755 /var/log/journal
 .
+edition="xfce"
 if [[ ! -z ${edition} ]]; then
   manjaro_packages="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/raw/master/editions/${edition}?inline=false"
   manjaro_services="https://gitlab.manjaro.org/manjaro-arm/applications/arm-profiles/-/raw/master/services/${edition}?inline=false"
