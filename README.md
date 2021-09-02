@@ -1,4 +1,4 @@
-# Manjaro arm64 rootfs with xfce4 
+# Manjaro arm64 rootfs with xfce4 and tigervnc
 
 ![](images/screen1.jpg)
 
@@ -35,7 +35,7 @@ Copy and run it in Termux
 pkg install wget && wget https://raw.githubusercontent.com/infinyte7/manjaro-fs-arm64/main/manjaro.sh && chmod +x manjaro.sh && ./manjaro.sh
 ```
 
-## Anki with Manjaro (xfce4 only, latest Anki and tigervnc)
+## Anki with Manjaro (xfce4 (minimal), latest Anki and tigervnc)
 Copy and run it in Termux
 ```
 pkg install wget && wget https://raw.githubusercontent.com/infinyte7/manjaro-fs-arm64/main/manki.sh && chmod +x manki.sh && ./manki.sh
