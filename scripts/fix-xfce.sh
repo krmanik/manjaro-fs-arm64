@@ -11,7 +11,7 @@ for package in $(pacman -Sp "${packages[@]}" 2>&1 | grep -Po '[^\s]*$'); do
 done
 
 ## Already installed, uncomment and run to update xfce4
-# pacman -S --needed --noconfirm ${packages[@]}
+pacman -S --needed --noconfirm ${packages[@]}
 
 ## Enable profile services (optional)
 for service in $(curl -sL "${manjaro_services}"); do
@@ -22,6 +22,3 @@ done
 curl -sL "${manjaro_overlays}" | \
   tar -xvf - -C / --wildcards --exclude='overlay.txt' \
   arm-profiles-master-overlays-${edition}/overlays/${edition}/* --strip 3
-
-## Copy ARM profiles
-cp -r /etc/skel/.config $HOME
