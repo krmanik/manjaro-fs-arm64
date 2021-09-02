@@ -162,7 +162,7 @@ install() {
       continue
     fi
     mkdir -p "${directory}" 2>&1 >/dev/null
-    manjaro_rootfs="https://github.com/infinyte7/manjaro-fs-arm64/releases/download/v0.2.0-manjaro-anki/manjaro-anki-latest.tar.gz"
+    manjaro_rootfs="https://github.com/infinyte7/manjaro-fs-arm64/releases/download/v0.3.0-manjaro-anki/manjaro-anki-latest.tar.gz"
     size=$(curl -sLI "${manjaro_rootfs}" | awk '/content-length/ {printf "%i", ($2/1024)/1024}')
     (curl -sL "${manjaro_rootfs}" | pv -ns "${size}m" - | proot -l tar -xzf - -C "${directory}") 2>&1 | \
       dialog --title "Manjaroid install" --gauge "Installing Manjaro (${size}MB)..." -1 -1
