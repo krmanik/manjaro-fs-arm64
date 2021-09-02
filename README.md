@@ -16,7 +16,7 @@ Anki with Manjaro (xfce4 only, latest Anki and tigervnc)
 | vncserver | tigervnc | tigervnc |
 | Anki | No | Yes |
 | Download size | 1.0 GB | 0.7 GB |
-| Installed Size | 4.0 GB | 1.8 GB |
+| Installed Size | 4.0 GB | 2.8 GB |
 | Desktop Env. | xfce4, xfce4-goodies | xfce4 (minimal) |
 
 # QuickStart
@@ -55,7 +55,7 @@ pkg install wget && wget https://raw.githubusercontent.com/infinyte7/manjaro-fs-
 [View wiki](https://github.com/infinyte7/manjaro-fs-arm64/wiki)
 
 ### View Demo
-https://user-images.githubusercontent.com/12841290/131592776-e720770b-e7e6-44cd-862a-c28378b0d494.mp4
+https://user-images.githubusercontent.com/12841290/131765043-3abc5d62-e4b5-440f-b740-2e305b43ebe7.mp4
 
 # License and Credits
 - [Manjaro ARM](https://manjaro.org/)
