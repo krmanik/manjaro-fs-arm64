@@ -12,7 +12,7 @@ if [[ $# -gt 0 ]]; then
 elif [[ ${arch:="$(uname -m)"} != "aarch64" ]]; then
   echo "Manjaroid: Incompatible device architecture (${arch})."
   exit 2
-elif ! command -v proot pv pulseaudio>/dev/null; then
+elif ! command -v proot>/dev/null || ! command -v pv>/dev/null || ! command -v pulseaudio>/dev/null; then
   if (dialog --title "Manjaroid dependencies" --yesno "Missing required package(s). Do you want to install them?" -1 -1); then
     while true; do
       pkg install -y proot pv pulseaudio 2>&1 | dialog --title "Manjaroid dependencies" --progressbox "Installing missing package(s)..." -1 -1
